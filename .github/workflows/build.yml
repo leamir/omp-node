@@ -13,13 +13,18 @@ on:
 
 jobs:
   build-windows-x64-release:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
         with:
           clean: true
           submodules: recursive
           fetch-depth: 0
+
+      - name: Install CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "3.23.2"
 
       - name: Generate build files
         run: |
@@ -45,13 +50,18 @@ jobs:
           path: dist/*
 
   build-windows-x86-release:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
         with:
           clean: true
           submodules: recursive
           fetch-depth: 0
+
+      - name: Install CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "3.23.2"
 
       - name: Generate build files
         run: |
